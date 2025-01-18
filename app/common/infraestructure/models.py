@@ -44,11 +44,9 @@ class DetallePedido(BaseDetallePedido, table=True):
 
 class baseCliente(SQLModel):
     cedula: str
-    primer_nombre: str
-    primer_apellido: str
-    segundo_nombre: Optional[str] = None
-    segundo_apellido: Optional[str] = None
+    nombre: str
     telefono: str
+    correo: str
     frecuencia: str# = Field(sa_column=Column(Enum(tipoFrecuencia)))
     genero: str #tipoGenero = Field(sa_column=Column(Enum(tipoGenero)))
     
