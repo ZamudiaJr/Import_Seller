@@ -13,9 +13,12 @@ class ClientRepository(IClientRepository[ClientAggregate]):
 
     async def create_client(self, client_aggregate: ClientAggregate) -> None:
         client_model = aggregate_to_model(client_aggregate)
+        print("RELEVANTEEEE")
+        print(client_model.id)
+        print(client_model.nombre)
         self.session.add(client_model)
         await self.session.commit()
-        await self.session.refresh(client_model)
+        #await self.session.refresh(client_model)
 
     async def delete_client(self, client_id: str) -> None:
         result = await self.session.execute(select(Cliente).where(Cliente.id == client_id))

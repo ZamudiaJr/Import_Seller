@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 class ClientDto(BaseModel):
-    id: int
+    id: str
     dni: str
     name: str
     phone: str

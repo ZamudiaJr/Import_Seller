@@ -7,7 +7,7 @@ class CreateClientService:
     def __init__(self, repo: IClientRepository[ClientAggregate]):
         self.repo = repo
 
-    async def execute(self, create_client_dto: CreateClientDto) -> None:
+    async def create_client(self, create_client_dto: CreateClientDto) -> ClientAggregate:
         client_aggregate = ClientAggregate.create(
             id=str(uuid4()),
             name=create_client_dto.name,

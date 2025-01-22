@@ -3,6 +3,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.asyncio import create_async_engine
 from decouple import config
+from app.common.infraestructure import models
 
 DATABASE_URL = config('DATABASE_URL') 
 #"sqlite+aiosqlite:///./test.db"

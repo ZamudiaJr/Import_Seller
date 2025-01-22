@@ -8,7 +8,7 @@ from app.clients.domain.enums.gender import Gender
 from app.common.domain.entity import Entity
 
 class Client(Entity):
-    def __init__(self, id: ID, name: Name, email: Email, dni: DNI, frequency: Frequency, gender: Gender, phone: Phone):
+    def __init__(self, id: ID, name: Name, dni: DNI, email: Email, frequency: Frequency, gender: Gender, phone: Phone):
         self.id = id
         self.name = name
         self.dni = dni
@@ -26,7 +26,7 @@ class Client(Entity):
         frequency = Frequency[frequency.upper()]
         gender = Gender[gender.upper()]
         phone = Phone.create(phone)
-        return cls(id, name, dni, email, frequency, gender)
+        return cls(id, name, dni, email, frequency, gender, phone)
     
     def update(self, name: str = None, dni: str = None, email: str = None, frequency: str = None, gender: str = None, phone: str = None):
         if name:
