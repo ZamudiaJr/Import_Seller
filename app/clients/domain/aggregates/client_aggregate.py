@@ -8,13 +8,13 @@ class ClientAggregate(Entity):
         self.client = client
 
     @classmethod
-    def create(cls, id: str, name: str, dni: str, email: str, frequency: str, gender: str):
+    def create(cls, id: str, name: str, dni: str, email: str, frequency: str, gender: str, phone: str):
         id = ID.create(id)
-        client = Client.create(id, name, dni, email, frequency, gender)
+        client = Client.create(id, name, dni, email, frequency, gender, phone)
         return cls(id, client)
     
-    def update(self, name: str = None, dni: str = None, email: str = None, frequency: str = None, gender: str = None):
-        self.client.update(name, dni, email, frequency, gender)
+    def update(self, name: str = None, dni: str = None, email: str = None, frequency: str = None, gender: str = None, phone: str = None):
+        self.client.update(name, dni, email, frequency, gender, phone)
 
     def get(self):
         return self.client
