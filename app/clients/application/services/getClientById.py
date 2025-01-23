@@ -8,5 +8,5 @@ class GetClientByIdService:
     async def get_client_by_id(self, client_id: str) -> ClientAggregate:
         client_aggregate = await self.repo.get_client_by_id(client_id)
         if not client_aggregate:
-            raise Exception(f"Client with id {client_id} not found")
+            raise ValueError(f"Client with id {client_id} not found")
         return client_aggregate
