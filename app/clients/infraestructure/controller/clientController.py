@@ -13,7 +13,7 @@ from app.clients.infraestructure.repository.clientRepository import ClientReposi
 from app.clients.infraestructure.db import database
 
 router = APIRouter(
-    tags=["clients"]
+    tags=["Clients"]
 )
 
 @router.post("/clients", status_code=status.HTTP_201_CREATED)
