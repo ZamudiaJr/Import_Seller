@@ -8,6 +8,7 @@ from app.products.application.services.updateProduct import UpdateProductService
 from app.products.application.services.deleteProduct import DeleteProductService
 from app.products.application.services.getProductById import GetProductByIdService
 from app.products.application.services.getProductByCode import GetProductByCodeService
+from app.products.application.services.getProducts import GetProductsService
 from app.products.infraestructure.repository.productRepository import ProductRepository
 from app.products.infraestructure.mappers.domain_to_dto import domain_to_dto
 
@@ -66,3 +67,11 @@ async def get_product_by_code(product_id: str, session: AsyncSession = Depends(d
         return domain_to_dto(product_aggregate)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
+    
+@router.get("/products/all/added/db", status_code=status.HTTP_200_OK)
+async def get_products(session: AsyncSession = Depends(database.get_session)):
+    repo = ProductRepository(session)
+    product_service = GetProductsService(repo)
+    product_aggregates = await product_service.list_products()
+    products = [domain_to_dto(product) for product in product_aggregates]
+    return products
