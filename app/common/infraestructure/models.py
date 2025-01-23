@@ -24,6 +24,7 @@ class BaseProducto(SQLModel):
     talla: Optional[int] = None
     genero: str
     precio: float
+    descripcion: str
 
 class Producto(BaseProducto, table=True):
     __tablename__ = "productos"
