@@ -6,7 +6,7 @@ class ProductDto(BaseModel):
     id: UUID
     code: str
     type: str
-    size: str
+    size: str | int
     gender: str
     price: float
     description: str
