@@ -14,10 +14,6 @@ engine = create_async_engine(
     future=True
 )
 
-async def init_db():
-    async with engine.begin() as conn:
-        await conn.run_sync(SQLModel.metadata.create_all)
-
 async def get_session() -> AsyncSession:
     async_session = sessionmaker(
         engine, expire_on_commit=False, class_=AsyncSession
