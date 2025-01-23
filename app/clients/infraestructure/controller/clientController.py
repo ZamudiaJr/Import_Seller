@@ -4,6 +4,7 @@ from app.clients.application.services.createClient import CreateClientService
 from app.clients.application.services.getClientById import GetClientByIdService
 from app.clients.application.services.getClientByDni import GetClientByDNIService
 from app.clients.application.services.deleteClient import DeleteClientService
+from app.clients.application.services.getClients import GetClientsService
 from app.clients.application.dtos.createClientDto import CreateClientDto
 from app.clients.infraestructure.mappers.domain_to_dto import domain_to_dto
 from app.clients.infraestructure.repository.clientRepository import ClientRepository
@@ -55,3 +56,11 @@ async def delete_client(client_id: str, session: AsyncSession = Depends(database
         return {"message": "Client deleted successfully"}
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
+    
+@router.get("/clients/all/created/db", status_code=status.HTTP_200_OK)
+async def get_clients(session: AsyncSession = Depends(database.get_session)):
+    repo = ClientRepository(session)
+    client_services = GetClientsService(repo)
+    clients_aggregates = await client_services.get_clients()
+    clients = [domain_to_dto(client) for client in clients_aggregates]
+    return {"message": "Clients found", "clients": clients}
