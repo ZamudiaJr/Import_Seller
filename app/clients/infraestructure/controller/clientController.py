@@ -5,7 +5,9 @@ from app.clients.application.services.getClientById import GetClientByIdService
 from app.clients.application.services.getClientByDni import GetClientByDNIService
 from app.clients.application.services.deleteClient import DeleteClientService
 from app.clients.application.services.getClients import GetClientsService
+from app.clients.application.services.updateClient import UpdateClientService
 from app.clients.application.dtos.createClientDto import CreateClientDto
+from app.clients.application.dtos.updateClientDto import UpdateClientDto
 from app.clients.infraestructure.mappers.domain_to_dto import domain_to_dto
 from app.clients.infraestructure.repository.clientRepository import ClientRepository
 from app.clients.infraestructure.db import database
@@ -64,3 +66,14 @@ async def get_clients(session: AsyncSession = Depends(database.get_session)):
     clients_aggregates = await client_services.get_clients()
     clients = [domain_to_dto(client) for client in clients_aggregates]
     return {"message": "Clients found", "clients": clients}
+
+@router.patch("/clients/update/{client_id}", status_code=status.HTTP_200_OK)
+async def update_client(client_id: str, client: UpdateClientDto, session: AsyncSession = Depends(database.get_session)):
+    repo = ClientRepository(session)
+    client_service = UpdateClientService(repo)
+    try:
+        success = await client_service.update_client(client_id, client)
+        if success:
+            return {"message": "Client updated successfully"}
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
