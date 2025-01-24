@@ -2,4 +2,6 @@ from enum import Enum
 
 class Agency(Enum):
     ZOOM = "Zoom"
-    MRW = "mrw"
+    MRW = "MRW"
+    YUMMY = "Yummy"
+    NA = "NA"

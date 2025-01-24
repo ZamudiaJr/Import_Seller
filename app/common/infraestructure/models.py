@@ -65,7 +65,6 @@ class baseEntrega(SQLModel):
     status: str
     fecha_entrega: Optional[date] = None
     tipo_entrega: str
-    pto_referencia: Optional[str] = None
     agencia: Optional[str] = None
 
 class Entrega(baseEntrega, table=True):
