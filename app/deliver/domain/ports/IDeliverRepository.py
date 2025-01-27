@@ -14,9 +14,9 @@ class IDeliverRepository(ABC, Generic[T]):
         pass
 
     @abstractmethod
-    async def get_deliver_by_id(self, inventory_id: str) -> T:
+    async def get_deliver_by_id(self, deliver_id: str) -> T:
         pass
     
     @abstractmethod
-    async def get_inventory_by_client_id(self, client_id: str) -> T:
+    async def get_delivers_by_client_id(self, client_id: str) -> List[T]:
         pass
