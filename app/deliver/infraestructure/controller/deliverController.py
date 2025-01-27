@@ -24,8 +24,9 @@ async def create_deliver(deliver_dto: CreateDeliverDto, session: AsyncSession = 
     deliver_repo = DeliverRepository(session)
     deliver_service = CreateDeliverService(deliver_repo)
     try:
-        client_aggregate = client_service.get_client_by_dni(deliver_dto.client_dni)
-        deliver_aggregate = deliver_service.create_deliver(deliver_dto, client_aggregate)
+        client_aggregate = await client_service.get_client_by_dni(deliver_dto.client_dni)
+        #return {"message": "Client_aggregate", "deliver": client_aggregate.client.id.get()}
+        deliver_aggregate = await deliver_service.create_deliver(deliver_dto, client_aggregate)
         deliver_dto = domain_to_dto(deliver_aggregate)
         return {"message": "Deliver created successfully", "deliver": deliver_dto}
     except ValueError as e:

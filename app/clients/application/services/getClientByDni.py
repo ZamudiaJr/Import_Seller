@@ -8,5 +8,5 @@ class GetClientByDNIService:
     async def get_client_by_dni(self, client_dni: str) -> ClientAggregate:
         client_aggregate = await self.repo.get_client_by_dni(client_dni)
         if not client_aggregate:
-            raise ValueError(f"Client with with {client_dni} not found")
+            raise ValueError(f"Client with DNI {client_dni} not found")
         return client_aggregate

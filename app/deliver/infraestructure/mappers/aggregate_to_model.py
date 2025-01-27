@@ -11,5 +11,5 @@ def aggregate_to_model(deliver_aggregate: DeliverAggregate) -> Entrega:
         status=deliver_aggregate.deliver.status.value,
         fecha_entrega=deliver_aggregate.deliver.date.get(),
         tipo_entrega=deliver_aggregate.deliver.type.value,
-        id_cliente=deliver_aggregate.client.id.get()
+        cliente_id=deliver_aggregate.client.id.get()
    )

@@ -1,6 +1,6 @@
 from enum import Enum
 
 class Status(Enum):
-    EN_AGENCIA = "En agencia"
-    EN_CAMINO = "En camino"
+    EN_AGENCIA = "Agencia"
+    EN_CAMINO = "Rodando"
     ENTREGADO = "Entregado"
