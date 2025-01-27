@@ -5,10 +5,10 @@ from app.common.domain.entity import Entity
 from datetime import date
 
 class DeliverAggregate(Entity):
-    def __init__(self, id: ID, deliver: Deliver, Client: Client):
+    def __init__(self, id: ID, deliver: Deliver, client: Client):
         self.id = id
         self.deliver = deliver
-        self.client = Client
+        self.client = client
 
     @classmethod
     def create(cls, deliver_id: str, state: str, city: str, township: str, street: str, status: str, date: date, type: str, agency: str, client_id: str, name: str, dni: str, email: str, frequency: str, gender: str, phone: str):

@@ -26,16 +26,18 @@ def model_to_domain(entrega_model: Entrega, cliente_model: Cliente) -> DeliverAg
         City.create(entrega_model.ciudad),
         Township.create(entrega_model.municipio),
         Street.create(entrega_model.calle),
-        Status[entrega_model.status],
+        Status(entrega_model.status),
         Date.create(entrega_model.fecha_entrega),
-        Type[entrega_model.tipo_entrega],
-        Agency[entrega_model.agencia]
+        Type(entrega_model.tipo_entrega),
+        Agency(entrega_model.agencia)
     )
     client = Client(
         ClientID.create(cliente_model.id),
         Name.create(cliente_model.nombre),
         DNI.create(cliente_model.cedula),
         Email.create(cliente_model.correo),
-        Frequency[cliente_model.frecuencia],
+        Frequency(cliente_model.frecuencia),
+        Gender(cliente_model.genero),
+        Phone.create(cliente_model.telefono)
     )
     return DeliverAggregate(id=DeliverID(entrega_model.id), deliver=deliver, client=client)

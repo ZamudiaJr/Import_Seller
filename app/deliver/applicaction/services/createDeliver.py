@@ -9,7 +9,7 @@ class CreateDeliverService:
         self.repo = repo
 
     async def create_deliver(self, deliver_dto: CreateDeliverDto, client_aggregate: ClientAggregate) -> DeliverAggregate:
-
+        
         deliver_aggregate = DeliverAggregate.create(
             deliver_id=str(uuid4()),
             state=deliver_dto.state,
@@ -28,6 +28,6 @@ class CreateDeliverService:
             gender=client_aggregate.client.gender.value,
             phone=client_aggregate.client.phone.get()
         )
-
+        print(f"Dentro del servicio -> en el agregado: {deliver_aggregate.deliver.agency.value}")
         await self.repo.create_deliver(deliver_aggregate)
         return deliver_aggregate

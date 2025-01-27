@@ -36,7 +36,7 @@ class DeliverRepository(IDeliverRepository[DeliverAggregate]):
         result = await self.session.execute(select(Entrega).where(Entrega.cliente_id == client_id))
         deliver_models = result.scalars().all()
         for deliver_model in deliver_models:
-            result2 = await self.session.execute(select(Cliente).where(Cliente.id == deliver_model.cliente_id))
+            result2 = await self.session.execute(select(Cliente).where(Cliente.id == client_id))
             client_model = result2.scalar_one_or_none()
             delivers_list.append(model_to_domain(deliver_model, client_model))
         return [deliver for deliver in delivers_list]
