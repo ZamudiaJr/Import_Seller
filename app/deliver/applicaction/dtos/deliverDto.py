@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 from datetime import date as fecha
 from uuid import UUID
 
-class CreateDeliverDto(BaseModel):
+class DeliverDto(BaseModel):
 
     id: UUID
     state: str
@@ -13,3 +13,5 @@ class CreateDeliverDto(BaseModel):
     date: fecha
     type: str
     agency: str
+    client_name: str
+    client_dni: str
