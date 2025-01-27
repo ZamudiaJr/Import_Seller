@@ -4,7 +4,7 @@ from app.deliver.domain.aggregate.delivery_aggregate import DeliverAggregate
 from app.clients.domain.aggregates.client_aggregate import ClientAggregate
 from uuid import uuid4
 
-class CreateDeliver:
+class CreateDeliverService:
     def __init__(self, repo: IDeliverRepository[DeliverAggregate]):
         self.repo = repo
 

@@ -3,6 +3,7 @@ from datetime import date as fecha
 
 class CreateDeliverDto(BaseModel):
 
+    client_dni: str = Field(..., description="El dni del cliente a quien se le está asociando el entregable", example="12345678")
     state: str = Field(..., description="EL estado donde será entregado el pedido", example="Miranda or Zulia or Sucre")
     city: str = Field(..., description="La ciudad donde será entregado el pedido", example="Guatire")
     township: str = Field(..., description="El monucio donde seráentregado el pedido", example="Zamora")
