@@ -1,7 +1,7 @@
 from app.deliver.domain.ports.IDeliverRepository import IDeliverRepository
 from app.deliver.domain.aggregate.delivery_aggregate import DeliverAggregate
 
-class GetDeliverById:
+class GetDeliverByIdService:
     def __init__(self, repo: IDeliverRepository[DeliverAggregate]):
         self.repo = repo
 
