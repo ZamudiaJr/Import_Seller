@@ -28,6 +28,7 @@ class CreateDeliverService:
             gender=client_aggregate.client.gender.value,
             phone=client_aggregate.client.phone.get()
         )
+        print(30*"-")
         print(f"Dentro del servicio -> en el agregado: {deliver_aggregate.deliver.agency.value}")
         await self.repo.create_deliver(deliver_aggregate)
         return deliver_aggregate

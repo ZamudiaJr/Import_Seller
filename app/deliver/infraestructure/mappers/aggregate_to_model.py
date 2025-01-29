@@ -4,9 +4,9 @@ from app.deliver.domain.aggregate.delivery_aggregate import DeliverAggregate
 def aggregate_to_model(deliver_aggregate: DeliverAggregate) -> Entrega:
     return Entrega(
         id=deliver_aggregate.deliver.id.get(),
-        estado=deliver_aggregate.deliver.street.get(),
+        estado=deliver_aggregate.deliver.state.get(),
         ciudad=deliver_aggregate.deliver.city.get(),
-        municipio=deliver_aggregate.deliver.state.get(),
+        municipio=deliver_aggregate.deliver.township.get(),
         calle=deliver_aggregate.deliver.street.get(),
         status=deliver_aggregate.deliver.status.value,
         fecha_entrega=deliver_aggregate.deliver.date.get(),
