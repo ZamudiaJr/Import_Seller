@@ -7,6 +7,7 @@ from app.deliver.applicaction.dtos.updateDeliverDto import UpdateDeliverDto
 
 from app.clients.application.services.getClientByDni import GetClientByDNIService
 from app.deliver.applicaction.services.getDeliverByClientId import GetDeliverByClientIdService
+from app.deliver.applicaction.services.getDeliverById import GetDeliverById
 
 from app.deliver.infraestructure.repository.deliverRepository import DeliverRepository
 from app.clients.infraestructure.repository.clientRepository import ClientRepository
@@ -41,3 +42,11 @@ async def get_delivers_by_client_id(client_id: str, session: AsyncSession = Depe
     deliver_aggregates = await deliver_service.get_deliver_by_client_id(client_id)
     delivers = [domain_to_dto(deliver_aggregate) for deliver_aggregate in deliver_aggregates]
     return {"message": "Delivers found", "delivers": delivers}
+
+@router.get("/deliver/{deliver_id}", status_code=status.HTTP_200_OK)
+async def get_deliver_by_id(deliver_id: str, session: AsyncSession = Depends(database.get_session)):
+    deliver_repo = DeliverRepository(session)
+    deliver_service = GetDeliverById(deliver_repo)
+    deliver_aggregate = await deliver_service.get_deliver_by_id(deliver_id)
+    deliver = domain_to_dto(deliver_aggregate)
+    return {"message": "Deliver found", "deliver": deliver}
