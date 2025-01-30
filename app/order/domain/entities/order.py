@@ -23,7 +23,7 @@ class Order(Entity):
         totalDiscount = TotalDiscount.create(totalDiscount)
         return cls(id, date, totalPrice, discount, totalDiscount)
     
-    def update(self, date: date, totalPrice: float, discount: bool, totalDiscount: float):
+    def update(self, date: date = None, totalPrice: float = None, discount: bool = None, totalDiscount: float = None):
         if date:
             self._date = Date.create(date)
         if totalPrice:
